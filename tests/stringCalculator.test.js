@@ -7,6 +7,6 @@ describe('String Calculator', () => {
     });
 
     test('should return a number for a single number input', () => {
-        expect(Add('1')).toBe(1); // Failing test case
+        expect(Add('1')).toBe(1); // Test case of single number input passes now
     });
 });
