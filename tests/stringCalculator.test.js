@@ -55,13 +55,24 @@ describe('String Calculator', () => {
         
         expect(Add('// \n1 2 3')).toBe(6);//Custom delimiter with numbers and spaces as delimiter
     });
+
     
-    
-    // Step-5: Failing test cases for negative numbers (should throw exceptions)
-    test('should throw for single negative number', () => {
-        expect(() => Add('1,-2,3')).toThrow('negative numbers not allowed -2');
-        expect(() => Add('1,-2,-3,4')).toThrow('negative numbers not allowed -2,-3');
+    // Step-5: Test cases for negative numbers (should throw exceptions)
+    test('should throw for various negative number scenarios', () => {
+        
+        expect(() => Add('1,-2,3')).toThrow('negative numbers not allowed -2'); // Single negative number
+       
+        expect(() => Add('1,-2,-3,4')).toThrow('negative numbers not allowed -2,-3'); // Multiple negative numbers
+        
+        expect(() => Add('-1,-2,-3')).toThrow('negative numbers not allowed -1,-2,-3'); // All numbers negative
+        
+        expect(() => Add('//;\n1;-2;3')).toThrow('negative numbers not allowed -2'); // Negative number with custom delimiter
+        
+        expect(() => Add('//|\n-1|2|-3')).toThrow('negative numbers not allowed -1,-3'); // Multiple negative numbers with custom delimiter
+        
+        expect(() => Add('-5')).toThrow('negative numbers not allowed -5'); // Negative number as only input
     });
-    
+
+
 });
 

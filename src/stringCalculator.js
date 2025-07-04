@@ -14,6 +14,11 @@ function parseDelimiter(input) {
 }
 
 function sumNumbers(numbers) {
+    // Find all negative numbers
+    const negatives = numbers.filter(n => Number(n) < 0);
+    if (negatives.length > 0) {
+        throw new Error('negative numbers not allowed ' + negatives.join(','));
+    }
     return numbers.map(Number).reduce((sum, num) => sum + num, 0);
 }
 
