@@ -5,7 +5,7 @@ function Add(input) {
         return 0; // Return 0 for empty or null input
     }
 
-    return input.split(',')
+    return input.split(/,|\n/) // Split by commas or new lines
         .map(Number)
         .reduce((sum, num) => sum + num, 0); // Sum up all numbers
 }
