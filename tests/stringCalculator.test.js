@@ -40,10 +40,14 @@ describe('String Calculator', () => {
         expect(Add('10\n11,12')).toBe(33);
     });
     
+    // Step-4: Failing test cases for custom delimiters (should fail until feature is implemented)
+    test('should support single-character custom delimiter ;', () => {
+        expect(Add('//;\n1;2')).toBe(3);
+    });
+    test('should support single-character custom delimiter |', () => {
+        expect(Add('//|\n4|5|6')).toBe(15);
+    });
+    test('should support multi-character custom delimiter sep', () => {
+        expect(Add('//sep\n7sep8sep9')).toBe(24);
+    });
 });
-
-
-
-
-
-
