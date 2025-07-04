@@ -34,7 +34,7 @@ describe('String Calculator', () => {
 
     // Step-3: Failing test case for new lines between numbers
     test('should handle new lines between numbers', () => {
-        expect(Add('1\n2,3')).toBe(6); // Test case of new lines between numbers input passes now
+        expect(Add('1\n2,3')).toBe(6); 
         expect(Add('4\n5\n6')).toBe(15);
         expect(Add('7,8\n9')).toBe(24);
         expect(Add('10\n11,12')).toBe(33);
