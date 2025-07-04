@@ -10,6 +10,10 @@ describe('String Calculator', () => {
     });
 
     test('should return the sum for two numbers', () => {
-        expect(Add('1,2')).toBe(3); // Test case of two number input passes now
+        expect(Add('1,2')).toBe(3); 
+    });
+
+    test('should return the sum for multiple numbers', () => {
+        expect(Add('1,2,3,4,5')).toBe(15); // Test case of multiple number input passes now
     });
 });
