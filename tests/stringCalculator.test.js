@@ -1,8 +1,6 @@
 const Add = require('../src/stringCalculator');
 
 
-
-
 describe('String Calculator', () => {
 
 
@@ -57,5 +55,13 @@ describe('String Calculator', () => {
         
         expect(Add('// \n1 2 3')).toBe(6);//Custom delimiter with numbers and spaces as delimiter
     });
+    
+    
+    // Step-5: Failing test cases for negative numbers (should throw exceptions)
+    test('should throw for single negative number', () => {
+        expect(() => Add('1,-2,3')).toThrow('negative numbers not allowed -2');
+        expect(() => Add('1,-2,-3,4')).toThrow('negative numbers not allowed -2,-3');
+    });
+    
 });
 
