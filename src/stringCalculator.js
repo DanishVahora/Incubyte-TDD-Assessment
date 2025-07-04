@@ -1,4 +1,4 @@
-// String Calculator supporting custom delimiters
+// String Calculator supporting custom delimiters and negative number validation
 
 function parseDelimiter(input) {
     if (input.startsWith('//')) {
@@ -13,19 +13,23 @@ function parseDelimiter(input) {
     return { delimiter: /,|\n/, rest: input };
 }
 
+function findNegatives(numbers) {
+    return numbers.filter(n => Number(n) < 0);
+}
+
 function sumNumbers(numbers) {
-    // Find all negative numbers
-    const negatives = numbers.filter(n => Number(n) < 0);
-    if (negatives.length > 0) {
-        throw new Error('negative numbers not allowed ' + negatives.join(','));
-    }
     return numbers.map(Number).reduce((sum, num) => sum + num, 0);
 }
 
 function Add(input) {
     if (!input) return 0;
     const { delimiter, rest } = parseDelimiter(input);
-    return sumNumbers(rest.split(delimiter));
+    const parts = rest.split(delimiter);
+    const negatives = findNegatives(parts);
+    if (negatives.length > 0) {
+        throw new Error('negative numbers not allowed ' + negatives.join(','));
+    }
+    return sumNumbers(parts);
 }
 
 module.exports = Add;
