@@ -40,14 +40,22 @@ describe('String Calculator', () => {
         expect(Add('10\n11,12')).toBe(33);
     });
     
-    // Step-4: Failing test cases for custom delimiters (should fail until feature is implemented)
-    test('should support single-character custom delimiter ;', () => {
-        expect(Add('//;\n1;2')).toBe(3);
-    });
-    test('should support single-character custom delimiter |', () => {
-        expect(Add('//|\n4|5|6')).toBe(15);
-    });
-    test('should support multi-character custom delimiter sep', () => {
-        expect(Add('//sep\n7sep8sep9')).toBe(24);
+    // Step-4: Test cases for custom delimiters 
+    test('should support various custom delimiters', () => {
+         
+        expect(Add('//;\n1;2')).toBe(3); //Single-character custom delimiter
+        
+        expect(Add('//|\n4|5|6')).toBe(15); //Single-character custom delimiter with more numbers
+        
+        expect(Add('//sep\n7sep8sep9')).toBe(24); //Multi-character custom delimiter
+       
+        expect(Add('//x\n10')).toBe(10); //Custom delimiter with only one number
+        
+        expect(Add('//-\n-1-2-3')).toBe(6); //Custom delimiter with negative numbers
+        
+        expect(Add('//a\n0a1a2a3')).toBe(6); //Custom delimiter with numbers and zero
+        
+        expect(Add('// \n1 2 3')).toBe(6);//Custom delimiter with numbers and spaces as delimiter
     });
 });
+

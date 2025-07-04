@@ -1,26 +1,26 @@
-// Basic implementation of stringCalculator function
+// String Calculator supporting custom delimiters
 
-function Add(input) {
-    if (!input) {
-        return 0; // Return 0 for empty or null input
-    }
-
-    let delimiter = /,|\n/; // Default delimiters: comma and newline
-
-    // Check for custom delimiter
+function parseDelimiter(input) {
     if (input.startsWith('//')) {
-        const delimiterMatch = input.match(/^\/\/(.+)\n/);
-        if (delimiterMatch) {
-            // Escape special regex characters in delimiter
-            const escapedDelimiter = delimiterMatch[1].replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            delimiter = new RegExp(escapedDelimiter);
-            input = input.slice(delimiterMatch[0].length); // Remove delimiter declaration
+        const match = input.match(/^\/\/(.+)\n/);
+        if (match) {
+            // Escape regex special characters in delimiter
+            const escaped = match[1].replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            return { delimiter: new RegExp(escaped), rest: input.slice(match[0].length) };
         }
     }
+    // Default delimiters: comma or newline
+    return { delimiter: /,|\n/, rest: input };
+}
 
-    return input.split(delimiter)
-        .map(Number)
-        .reduce((sum, num) => sum + num, 0);
+function sumNumbers(numbers) {
+    return numbers.map(Number).reduce((sum, num) => sum + num, 0);
+}
+
+function Add(input) {
+    if (!input) return 0;
+    const { delimiter, rest } = parseDelimiter(input);
+    return sumNumbers(rest.split(delimiter));
 }
 
 module.exports = Add;
