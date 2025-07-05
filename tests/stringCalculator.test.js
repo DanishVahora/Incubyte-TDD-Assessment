@@ -32,46 +32,51 @@ describe('String Calculator', () => {
 
     // Step-3: Failing test case for new lines between numbers
     test('should handle new lines between numbers', () => {
-        expect(Add('1\n2,3')).toBe(6); 
+        expect(Add('1\n2,3')).toBe(6);
         expect(Add('4\n5\n6')).toBe(15);
         expect(Add('7,8\n9')).toBe(24);
         expect(Add('10\n11,12')).toBe(33);
     });
-    
+
     // Step-4: Test cases for custom delimiters 
     test('should support various custom delimiters', () => {
-         
+
         expect(Add('//;\n1;2')).toBe(3); //Single-character custom delimiter
-        
+
         expect(Add('//|\n4|5|6')).toBe(15); //Single-character custom delimiter with more numbers
-        
+
         expect(Add('//sep\n7sep8sep9')).toBe(24); //Multi-character custom delimiter
-       
+
         expect(Add('//x\n10')).toBe(10); //Custom delimiter with only one number
-        
+
         expect(Add('//-\n-1-2-3')).toBe(6); //Custom delimiter with negative numbers
-        
+
         expect(Add('//a\n0a1a2a3')).toBe(6); //Custom delimiter with numbers and zero
-        
+
         expect(Add('// \n1 2 3')).toBe(6);//Custom delimiter with numbers and spaces as delimiter
     });
 
-    
+
     // Step-5: Test cases for negative numbers (should throw exceptions)
     test('should throw for various negative number scenarios', () => {
-        
+
         expect(() => Add('1,-2,3')).toThrow('negative numbers not allowed -2'); // Single negative number
-       
+
         expect(() => Add('1,-2,-3,4')).toThrow('negative numbers not allowed -2,-3'); // Multiple negative numbers
-        
+
         expect(() => Add('-1,-2,-3')).toThrow('negative numbers not allowed -1,-2,-3'); // All numbers negative
-        
+
         expect(() => Add('//;\n1;-2;3')).toThrow('negative numbers not allowed -2'); // Negative number with custom delimiter
-        
+
         expect(() => Add('//|\n-1|2|-3')).toThrow('negative numbers not allowed -1,-3'); // Multiple negative numbers with custom delimiter
-        
+
         expect(() => Add('-5')).toThrow('negative numbers not allowed -5'); // Negative number as only input
     });
 
 
+    // Step-6: Failing test cases for ignoring numbers bigger than 1000
+    test('should ignore a single number greater than 1000', () => {
+        expect(Add('1001')).toBe(0);
+    });
+    
 });
