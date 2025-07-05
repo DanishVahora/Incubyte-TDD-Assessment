@@ -1,10 +1,20 @@
 // String Calculator supporting custom delimiters, negative number validation, and ignoring numbers > 1000
 
 function parseDelimiter(input) {
+    // Multi-character delimiter: //[delimiter]\n
+    if (input.startsWith('//[')) {
+        const match = input.match(/^\/\/(\[.+\])\n/);
+        if (match) {
+            // Remove brackets and escape regex special characters
+            const rawDelimiter = match[1].slice(1, -1);
+            const escaped = rawDelimiter.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            return { delimiter: new RegExp(escaped), rest: input.slice(match[0].length) };
+        }
+    }
+    // Single-character delimiter: //delimiter\n
     if (input.startsWith('//')) {
         const match = input.match(/^\/\/(.+)\n/);
         if (match) {
-            // Escape regex special characters in delimiter
             const escaped = match[1].replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             return { delimiter: new RegExp(escaped), rest: input.slice(match[0].length) };
         }
