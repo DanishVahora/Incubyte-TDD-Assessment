@@ -101,4 +101,16 @@ describe('String Calculator', () => {
         expect(Add('//[abc]\n4abc5abc6')).toBe(15);
         expect(Add('//[xyz]\n7xyz8xyz9')).toBe(24);
     });
+
+    // Step-7: Failing test cases for multi-character delimiter edge cases (Red phase)
+    test('should fail for multi-character delimiter edge cases (Red phase)', () => {
+        
+        expect(Add('//[.*]\n1.*2.*3')).toBe(6); // Delimiter with special regex characters
+        
+        expect(Add('//[123]\n11231123')).toBe(2); // Delimiter with numbers
+        
+        expect(Add('//[   ]\n1   2   3')).toBe(6); // Delimiter with spaces
+        
+        expect(Add('//[;]\n1;2')).toBe(3); // Delimiter with only one character in brackets
+    });
 });
