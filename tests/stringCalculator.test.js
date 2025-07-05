@@ -133,4 +133,11 @@ describe('String Calculator', () => {
         
         expect(Add('//[***]\n1001***2***1002***3')).toBe(5); // Numbers > 1000 with long delimiter
     });
+
+
+    // Step-8: Multiple single-character delimiters
+    test('should support multiple single-character delimiters', () => {
+        expect(Add('//[*][%]\n1*2%3')).toBe(6);
+        expect(Add('//[;][,]\n4;5,6')).toBe(15);
+    });
 });
