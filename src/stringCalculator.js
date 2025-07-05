@@ -18,7 +18,11 @@ function findNegatives(numbers) {
 }
 
 function sumNumbers(numbers) {
-    return numbers.map(Number).reduce((sum, num) => sum + num, 0);
+    // Ignore numbers greater than 1000
+    return numbers
+        .map(Number)
+        .filter(num => num <= 1000)
+        .reduce((sum, num) => sum + num, 0);
 }
 
 function Add(input) {
