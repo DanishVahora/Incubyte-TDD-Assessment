@@ -94,4 +94,11 @@ describe('String Calculator', () => {
         expect(Add('//sep\n7sep1001sep9')).toBe(16); // Custom delimiter, mix
     });
     
+    
+    // Step-7: Failing test cases for multi-character delimiters (should fail until feature is implemented)
+    test('should support single multi-character custom delimiter', () => {
+        expect(Add('//[***]\n1***2***3')).toBe(6);
+        expect(Add('//[abc]\n4abc5abc6')).toBe(15);
+        expect(Add('//[xyz]\n7xyz8xyz9')).toBe(24);
+    });
 });
