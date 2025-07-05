@@ -1,6 +1,6 @@
 # String Calculator - TDD Implementation
 
-![Test Results](assets/step-8 & 9/Passed_Multiple_single-character_case.png)
+![Test Results](assets/step-8&9/Passed_Multiple_single-character_case.png)
 
 [![tests](https://img.shields.io/badge/tests-passing-brightgreen)](tests/stringCalculator.test.js)
 [![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](tests/stringCalculator.test.js)
