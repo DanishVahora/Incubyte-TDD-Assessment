@@ -135,9 +135,17 @@ describe('String Calculator', () => {
     });
 
 
-    // Step-8 & 9: Multiple single-character delimiters
-    test('should support multiple single-character delimiters', () => {
+    // Step-8 & 9: Multiple custom delimiters (single and multi-character, edge cases)
+    test('should support multiple custom delimiters (single and multi-character, edge cases)', () => {
+        
+        // Single-character delimiters
         expect(Add('//[*][%]\n1*2%3')).toBe(6);
         expect(Add('//[;][,]\n4;5,6')).toBe(15);
+
+        // Multi-character and mixed delimiters
+        expect(Add('//[a][b][c]\n1a2b3c4')).toBe(10);
+        expect(Add('//[***][%][#]\n1***2%3#4')).toBe(10);
+        expect(Add('//[.][*][+]\n1.2*3+4')).toBe(10);
+        expect(Add('//[ ]\n1 2 3')).toBe(6);
     });
 });
