@@ -113,4 +113,24 @@ describe('String Calculator', () => {
         
         expect(Add('//[;]\n1;2')).toBe(3); // Delimiter with only one character in brackets
     });
+
+    // Step-7: Additional edge case tests for multi-character delimiters
+    test('should handle more edge cases for multi-character delimiters', () => {
+        
+        expect(Add('//[ ]\n4 5 6')).toBe(15); // Delimiter is a single space
+        
+        expect(Add('//[\t]\n7\t8\t9')).toBe(24); //// Delimiter is a tab character
+        
+        expect(Add('//[+]\n1+2+3')).toBe(6); // Delimiter is a special regex char
+        
+        expect(Add('//[***!!!***]\n1***!!!***2***!!!***3')).toBe(6); // Delimiter is a long string of special chars
+        
+        expect(Add('//[1]\n2112')).toBe(4); // Delimiter is a number in brackets
+        
+        expect(Add('//[-1*2]\n3-1*24-1*25')).toBe(12); // Delimiter is a mix of numbers and special chars
+        
+        expect(() => Add('//[***]\n-1***2***-3')).toThrow('negative numbers not allowed -1,-3'); // Negative numbers with long delimiter
+        
+        expect(Add('//[***]\n1001***2***1002***3')).toBe(5); // Numbers > 1000 with long delimiter
+    });
 });
