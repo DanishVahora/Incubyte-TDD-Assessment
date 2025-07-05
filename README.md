@@ -1,6 +1,6 @@
 ﻿# String Calculator - TDD Implementation
 
-![Test Results](assets/step-8&9/coverageImage.png)
+![Test Results](assets/step-8&9/Passed_Multiple_single-character_case.png)
 
 [![tests](https://img.shields.io/badge/tests-passing-brightgreen)](tests/stringCalculator.test.js)
 [![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](tests/stringCalculator.test.js)
@@ -239,7 +239,7 @@ function Add(input) {
 
 The project achieved 100% test coverage across all functionality, ensuring that all code paths are thoroughly tested.
 
-![Test Coverage Results](assets/step-1/Passed_Two_Number_Input.png)
+![Test Coverage Results](assets/step-8&9/coverageImage.png)
 
 Coverage metrics:
 - Statements: 96.87%
