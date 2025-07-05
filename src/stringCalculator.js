@@ -1,4 +1,4 @@
-// String Calculator supporting custom delimiters and negative number validation
+// String Calculator supporting custom delimiters, negative number validation, and ignoring numbers > 1000
 
 function parseDelimiter(input) {
     if (input.startsWith('//')) {
@@ -17,12 +17,13 @@ function findNegatives(numbers) {
     return numbers.filter(n => Number(n) < 0);
 }
 
+function filterValidNumbers(numbers) {
+    // Only include numbers <= 1000
+    return numbers.map(Number).filter(num => num <= 1000);
+}
+
 function sumNumbers(numbers) {
-    // Ignore numbers greater than 1000
-    return numbers
-        .map(Number)
-        .filter(num => num <= 1000)
-        .reduce((sum, num) => sum + num, 0);
+    return numbers.reduce((sum, num) => sum + num, 0);
 }
 
 function Add(input) {
@@ -33,7 +34,8 @@ function Add(input) {
     if (negatives.length > 0) {
         throw new Error('negative numbers not allowed ' + negatives.join(','));
     }
-    return sumNumbers(parts);
+    const validNumbers = filterValidNumbers(parts);
+    return sumNumbers(validNumbers);
 }
 
 module.exports = Add;

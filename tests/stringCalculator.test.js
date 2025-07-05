@@ -74,9 +74,24 @@ describe('String Calculator', () => {
     });
 
 
-    // Step-6: Failing test cases for ignoring numbers bigger than 1000
-    test('should ignore a single number greater than 1000', () => {
-        expect(Add('1001')).toBe(0);
+    // Step-6: Test cases for ignoring numbers bigger than 1000
+    test('should ignore numbers greater than 1000 in various scenarios', () => {
+        
+        expect(Add('1001')).toBe(0); // Single number greater than 1000
+        
+        expect(Add('2,1000')).toBe(1002); // Numbers less than or equal to 1000
+        
+        expect(Add('2,1001,3')).toBe(5); // Mix of valid and ignored numbers
+        
+        expect(Add('1001,2000,3000')).toBe(0); // All numbers greater than 1000
+        
+        expect(Add('1000,1')).toBe(1001); // Number exactly 1000 (should be included)
+       
+        expect(Add('//;\n1;1001;2')).toBe(3); // Custom delimiter with numbers over 1000
+        
+        expect(Add('//|\n1001|2002|3003')).toBe(0); // Custom delimiter, all numbers over 1000
+        
+        expect(Add('//sep\n7sep1001sep9')).toBe(16); // Custom delimiter, mix
     });
     
 });
