@@ -251,10 +251,5 @@ Coverage metrics:
 
 This String Calculator demonstrates how TDD can lead to robust, well-tested code with clear separation of concerns. Each feature was implemented following the RED-GREEN-REFACTOR cycle, resulting in a modular and maintainable solution.
 
-## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
