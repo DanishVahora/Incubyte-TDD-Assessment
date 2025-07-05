@@ -135,7 +135,7 @@ describe('String Calculator', () => {
     });
 
 
-    // Step-8: Multiple single-character delimiters
+    // Step-8 & 9: Multiple single-character delimiters
     test('should support multiple single-character delimiters', () => {
         expect(Add('//[*][%]\n1*2%3')).toBe(6);
         expect(Add('//[;][,]\n4;5,6')).toBe(15);

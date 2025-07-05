@@ -12,14 +12,16 @@ function removeBrackets(str) {
 
 // Parses the delimiter from the input string and returns the delimiter RegExp and the rest of the string
 function parseDelimiter(input) {
-
-    // Multi-character delimiter: //[delimiter]\n (e.g., //[***]\n1***2***3)
+    // Multiple delimiters: //[delim1][delim2][delim3]\n (any length)
     if (input.startsWith('//[')) {
-        const match = input.match(/^\/\/(\[.+\])\n/);
-        if (match) {
-            const rawDelimiter = removeBrackets(match[1]);
-            const escaped = escapeRegex(rawDelimiter);
-            return { delimiter: new RegExp(escaped), rest: input.slice(match[0].length) };
+        // Match all [delim] sections
+        const delimiterMatches = input.match(/\[(.*?)\]/g);
+        if (delimiterMatches) {
+            const delimiters = delimiterMatches.map(d => escapeRegex(d.slice(1, -1)));
+            const delimiterRegex = new RegExp(delimiters.join('|'));
+            // Find where the delimiter section ends
+            const delimiterSectionEnd = input.indexOf('\n') + 1;
+            return { delimiter: delimiterRegex, rest: input.slice(delimiterSectionEnd) };
         }
     }
 
